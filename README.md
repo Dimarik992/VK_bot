@@ -16,5 +16,5 @@ TODO - документация: возможности, описание фун
     • user_search_result - связь поискового запроса и найденных кандидатов
     • user_interest - информация о реакции пользователя на предложенных кандидатов
 
-<img src="db_scheme.png" alt="Python logo" width="400" style="display: block; margin: 0 auto;"> 
+<img src="db_scheme.png" alt="Python logo" width="600" style="display: block; margin: 0 auto;"> 
 
