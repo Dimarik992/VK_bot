@@ -7,6 +7,7 @@
     - get_candidate_with_photos: обёртка «кандидат + топ-3 фото».
 """
 
+from config import AGE_DELTA, SEARCH_PAGE_SIZE, SEARCH_STATUS
 from vk_service.auth import vk
 from vk_service.photos import get_top_photos
 from vk_service.utils import calculate_age
@@ -54,16 +55,16 @@ def get_user_info(user_id):
     }
 
 
-def search_candidates(user_info, count=50, offset=0):
+def search_candidates(user_info, count=SEARCH_PAGE_SIZE, offset=0):
     """
     Ищет кандидатов для знакомств по данным пользователя.
 
     Критерии поиска:
         - пол — противоположный полу клиента;
-        - возраст — ±3 года от возраста клиента;
+        - возраст — ±AGE_DELTA лет от возраста клиента;
         - город — тот же, что у клиента;
         - только пользователи с фото;
-        - только в активном поиске (status=6).
+        - только в активном поиске (config.SEARCH_STATUS).
 
     Args:
         user_info (dict): Результат "get_user_info".
@@ -78,7 +79,7 @@ def search_candidates(user_info, count=50, offset=0):
         'count': count,
         'offset': offset,
         'has_photo': 1,
-        'status': 6,
+        'status': SEARCH_STATUS,
     }
 
     sex = user_info.get('sex')
@@ -89,8 +90,8 @@ def search_candidates(user_info, count=50, offset=0):
 
     age = user_info.get('age')
     if age:
-        params['age_from'] = age - 3
-        params['age_to'] = age + 3
+        params['age_from'] = age - AGE_DELTA
+        params['age_to'] = age + AGE_DELTA
 
     city_id = user_info.get('city_id')
     if city_id:

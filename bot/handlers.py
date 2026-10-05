@@ -4,7 +4,6 @@ from typing import Any, Dict, List, Optional
 from vk_api.bot_longpoll import VkBotEventType
 
 from bot.bot_utils import (
-    calculate_age,
     format_candidate_message,
     format_search_params,
 )
@@ -118,9 +117,9 @@ class BotHandlers:
         gender = info.get("sex")
         return self.repo.save_user(
             vk_id,
-            age=calculate_age(info.get("bdate")),
+            age=info.get("age"),
             gender=gender if gender in (1, 2) else None,
-            city=(info.get("city") or {}).get("title"),
+            city=info.get("city_title"),
         )
 
     def _ensure_profile(self, peer_id: int, vk_id: int) -> bool:

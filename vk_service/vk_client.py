@@ -9,8 +9,9 @@ from typing import Any, Dict, Iterator, List, Optional
 
 import vk_api
 from vk_api.bot_longpoll import VkBotEventType, VkBotLongPoll
+from vk_api.utils import get_random_id
 
-from config import VK_GROUP_TOKEN
+from config import SEARCH_PAGE_SIZE, SEARCH_STATUS, VK_GROUP_TOKEN
 from vk_service.auth import vk
 from vk_service.photos import get_top_photos
 from vk_service.users import get_user_info
@@ -57,7 +58,7 @@ class VkClient:
         params: Dict[str, Any] = {
             'peer_id': peer_id,
             'message': text,
-            'random_id': 0,
+            'random_id': get_random_id(),
         }
         if keyboard:
             params['keyboard'] = keyboard
@@ -90,7 +91,7 @@ class VkClient:
 
     def search_users(self, sex: int, age_from: int, age_to: int,
                      city_id: Optional[int] = None,
-                     count: int = 50) -> List[Dict[str, Any]]:
+                     count: int = SEARCH_PAGE_SIZE) -> List[Dict[str, Any]]:
         """
         Ищет пользователей по параметрам.
         Возвращает список словарей из VK API (users.search).
@@ -101,7 +102,7 @@ class VkClient:
             'age_to': age_to,
             'count': count,
             'has_photo': 1,
-            'status': 6,
+            'status': SEARCH_STATUS,
         }
         if city_id:
             params['city'] = city_id
