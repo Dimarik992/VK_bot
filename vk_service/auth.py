@@ -2,17 +2,12 @@
 Модуль авторизации в VK API.
 
 Создаёт единый объект "vk" для всех модулей пакета.
-Токен берётся из переменных окружения (файл ".env").
+Токен берётся из config (переменные окружения / файл ".env").
 """
 
-import os
-
 import vk_api
-from dotenv import load_dotenv
 
-load_dotenv()
-
-VK_USER_TOKEN = os.getenv('VK_USER_TOKEN')
+from config import VK_USER_TOKEN
 
 # Проверка, что токен задан
 if not VK_USER_TOKEN or VK_USER_TOKEN.startswith('Вставь'):

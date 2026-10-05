@@ -32,8 +32,3 @@ class SessionStorage:
         if vk_id not in self._sessions:
             self._sessions[vk_id] = UserSession()
         return self._sessions[vk_id]
-
-    def reset(self, vk_id: int) -> UserSession:
-        """Сбрасывает сессию пользователя."""
-        self._sessions[vk_id] = UserSession()
-        return self._sessions[vk_id]
