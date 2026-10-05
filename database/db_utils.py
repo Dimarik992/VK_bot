@@ -2,7 +2,13 @@ from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 from database.db_engine import with_read_session, with_session
-from database.db_model import Candidate, User, UserInterest, UserSearch, UserSearchResult
+from database.db_model import (
+    Candidate,
+    User,
+    UserInterest,
+    UserSearch,
+    UserSearchResult
+)
 
 """
 Все функции можно использовать, не передавая session.

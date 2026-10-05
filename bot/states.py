@@ -15,7 +15,7 @@ class UserSession:
         self.state: str = STATE_IDLE
         self.search_id: Optional[int] = None       # id последнего поиска
         self.queue: List[int] = []                 # vk_id кандидатов к показу
-        self.current: Optional[dict] = None        # кандидат, показанный сейчас
+        self.current: Optional[dict] = None        # текущий кандидат
 
 
 class SessionStorage:

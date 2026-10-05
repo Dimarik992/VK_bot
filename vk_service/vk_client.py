@@ -112,4 +112,3 @@ class VkClient:
     def get_top_photos(self, user_id: int) -> List[Dict[str, Any]]:
         """Возвращает топ-3 фотографии пользователя по лайкам."""
         return get_top_photos(user_id)
-

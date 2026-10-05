@@ -69,7 +69,8 @@ class BotHandlers:
         """Ловит ошибки, чтобы бот не падал из-за одного сообщения."""
         try:
             self.handle_message(event)
-        except Exception as error:  # noqa: BLE001 — обработчик не должен падать
+        except Exception as error:  # noqa: BLE001
+            # Обработчик не должен падать из-за одного сообщения
             print(f"Ошибка при обработке сообщения: {error}")
 
     def handle_message(self, event) -> None:
